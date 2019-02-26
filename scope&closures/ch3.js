@@ -140,7 +140,7 @@ setTimeout( function timeoutHandler(){ // <-- Look, I have a name!
 // you can pass arguments to iife-s:
 var a = 2;
 
-(function IIFE( global ){
+(function IIFE( global ){ //creates it's own SCOPE!
 
 	var a = 3;
 	console.log( a ); // 3
