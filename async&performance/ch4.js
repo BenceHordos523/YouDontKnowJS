@@ -111,3 +111,46 @@ s2();		// b = a * 2;
 
 a = 12
 b = 9
+
+function* something() {
+  try {
+    var nextVal;
+
+    while (true) {
+      if (nextVal === undefined) {
+        nextVal = 1;
+      }
+      else {
+        nextVal = (3 * nextVal) + 6;
+      }
+
+      yield nextVal;
+    }
+  }
+  // cleanup clause
+  finally {
+    console.log("cleaning up!");
+  }
+}
+
+var it = something();
+for (var v of it) {
+  console.log(v);
+
+  // don't let the loop run forever!
+  if (v > 500) {
+    console.log(
+      // complete the generator's iterator
+      it.return("Hello World").value
+    );
+    // no `break` needed here
+  }
+}
+// 1 9 33 105 321 969
+// cleaning up!
+// Hello World
+
+// THUNKS is next
+
+// saw thunks, nothing special
+// the main part is understandable, but ok
